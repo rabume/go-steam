@@ -19,6 +19,7 @@ import (
 	"github.com/0xAozora/go-steam/protocol/protobuf"
 	"github.com/0xAozora/go-steam/protocol/steamlang"
 	"github.com/0xAozora/go-steam/steamid"
+	"golang.org/x/net/proxy"
 )
 
 // Represents a client to the Steam network.
@@ -54,6 +55,8 @@ type Client struct {
 	writeChan chan protocol.IMsg
 	writeBuf  *bytes.Buffer
 	heartbeat *time.Ticker
+
+	Proxy proxy.Dialer
 }
 
 type PacketHandler interface {
@@ -167,7 +170,7 @@ func (c *Client) ConnectTo(addr *netutil.PortAddr) error {
 func (c *Client) ConnectToBind(addr *netutil.PortAddr, local *net.TCPAddr) error {
 	c.Disconnect()
 
-	conn, err := dialTCP(local, addr.ToTCPAddr())
+	conn, err := dialTCP(local, addr.ToTCPAddr(), c.Proxy)
 	if err != nil {
 		c.Fatalf("Connect failed: %v", err)
 		return err

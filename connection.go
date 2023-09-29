@@ -11,6 +11,7 @@ import (
 
 	"github.com/0xAozora/go-steam/cryptoutil"
 	"github.com/0xAozora/go-steam/protocol"
+	"golang.org/x/net/proxy"
 )
 
 type connection interface {
@@ -29,14 +30,22 @@ type tcpConnection struct {
 	cipherMutex sync.RWMutex
 }
 
-func dialTCP(laddr, raddr *net.TCPAddr) (*tcpConnection, error) {
-	conn, err := net.DialTCP("tcp", laddr, raddr)
+func dialTCP(laddr, raddr *net.TCPAddr, proxy proxy.Dialer) (*tcpConnection, error) {
+
+	var conn net.Conn
+	var err error
+	if proxy != nil {
+		conn, err = proxy.Dial("tcp", raddr.String())
+	} else {
+		conn, err = net.DialTCP("tcp", laddr, raddr)
+	}
+
 	if err != nil {
 		return nil, err
 	}
 
 	return &tcpConnection{
-		conn: conn,
+		conn: conn.(*net.TCPConn),
 	}, nil
 }
 
