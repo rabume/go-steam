@@ -1,6 +1,6 @@
-module github.com/Philipp15b/go-steam/v3
+module github.com/0xAozora/go-steam
 
-go 1.16
+go 1.21
 
 require (
 	github.com/davecgh/go-spew v1.1.1

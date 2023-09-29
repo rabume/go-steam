@@ -7,18 +7,18 @@ import (
 	"encoding/binary"
 	"fmt"
 	"hash/crc32"
-	"io/ioutil"
+	"io"
 	"net"
 	"sync"
 	"sync/atomic"
 	"time"
 
-	"github.com/Philipp15b/go-steam/v3/cryptoutil"
-	"github.com/Philipp15b/go-steam/v3/netutil"
-	"github.com/Philipp15b/go-steam/v3/protocol"
-	"github.com/Philipp15b/go-steam/v3/protocol/protobuf"
-	"github.com/Philipp15b/go-steam/v3/protocol/steamlang"
-	"github.com/Philipp15b/go-steam/v3/steamid"
+	"github.com/0xAozora/go-steam/cryptoutil"
+	"github.com/0xAozora/go-steam/netutil"
+	"github.com/0xAozora/go-steam/protocol"
+	"github.com/0xAozora/go-steam/protocol/protobuf"
+	"github.com/0xAozora/go-steam/protocol/steamlang"
+	"github.com/0xAozora/go-steam/steamid"
 )
 
 // Represents a client to the Steam network.
@@ -351,7 +351,7 @@ func (c *Client) handleMulti(packet *protocol.Packet) {
 			return
 		}
 
-		payload, err = ioutil.ReadAll(r)
+		payload, err = io.ReadAll(r)
 		if err != nil {
 			c.Errorf("handleMulti: Error while decompressing: %v", err)
 			return

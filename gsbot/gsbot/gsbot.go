@@ -18,9 +18,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Philipp15b/go-steam/v3"
-	"github.com/Philipp15b/go-steam/v3/gsbot"
-	"github.com/Philipp15b/go-steam/v3/protocol/steamlang"
+	"github.com/0xAozora/go-steam"
+	"github.com/0xAozora/go-steam/gsbot"
+	"github.com/0xAozora/go-steam/protocol/steamlang"
 )
 
 const usage string = "usage: gsbot [username] [-p password] [-a authcode] [-t twofactorcode] [-l loginkey]"

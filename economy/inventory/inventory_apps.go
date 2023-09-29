@@ -3,12 +3,12 @@ package inventory
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"regexp"
 	"strconv"
 
-	"github.com/Philipp15b/go-steam/v3/steamid"
+	"github.com/0xAozora/go-steam/steamid"
 )
 
 type InventoryApps map[string]*InventoryApp
@@ -62,7 +62,7 @@ func GetInventoryApps(client *http.Client, steamId steamid.SteamId) (InventoryAp
 		return nil, err
 	}
 	defer resp.Body.Close()
-	respBody, err := ioutil.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}

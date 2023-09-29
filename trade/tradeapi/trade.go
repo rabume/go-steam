@@ -7,16 +7,16 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"regexp"
 	"strconv"
 	"time"
 
-	"github.com/Philipp15b/go-steam/v3/community"
-	"github.com/Philipp15b/go-steam/v3/economy/inventory"
-	"github.com/Philipp15b/go-steam/v3/netutil"
-	"github.com/Philipp15b/go-steam/v3/steamid"
+	"github.com/0xAozora/go-steam/community"
+	"github.com/0xAozora/go-steam/economy/inventory"
+	"github.com/0xAozora/go-steam/netutil"
+	"github.com/0xAozora/go-steam/steamid"
 )
 
 const tradeUrl = "https://steamcommunity.com/trade/%d/"
@@ -62,7 +62,7 @@ func (t *Trade) GetMain() (*Main, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}

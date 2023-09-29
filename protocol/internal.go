@@ -6,7 +6,7 @@ import (
 	"math"
 	"strconv"
 
-	"github.com/Philipp15b/go-steam/v3/protocol/steamlang"
+	"github.com/0xAozora/go-steam/protocol/steamlang"
 )
 
 type JobId uint64

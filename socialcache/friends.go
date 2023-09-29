@@ -4,15 +4,16 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/Philipp15b/go-steam/v3/protocol/steamlang"
-	"github.com/Philipp15b/go-steam/v3/steamid"
+	"github.com/0xAozora/go-steam/protocol/steamlang"
+	"github.com/0xAozora/go-steam/steamid"
 )
 
 // Friends list is a thread safe map
 // They can be iterated over like so:
-// 	for id, friend := range client.Social.Friends.GetCopy() {
-// 		log.Println(id, friend.Name)
-// 	}
+//
+//	for id, friend := range client.Social.Friends.GetCopy() {
+//		log.Println(id, friend.Name)
+//	}
 type FriendsList struct {
 	mutex sync.RWMutex
 	byId  map[steamid.SteamId]*Friend

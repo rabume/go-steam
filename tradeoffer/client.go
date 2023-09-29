@@ -3,15 +3,15 @@ package tradeoffer
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 	"time"
 
-	"github.com/Philipp15b/go-steam/v3/community"
-	"github.com/Philipp15b/go-steam/v3/economy/inventory"
-	"github.com/Philipp15b/go-steam/v3/netutil"
-	"github.com/Philipp15b/go-steam/v3/steamid"
+	"github.com/0xAozora/go-steam/community"
+	"github.com/0xAozora/go-steam/economy/inventory"
+	"github.com/0xAozora/go-steam/netutil"
+	"github.com/0xAozora/go-steam/steamid"
 )
 
 type APIKey string
@@ -310,7 +310,7 @@ func (c *Client) GetTradeReceipt(tradeId uint64) ([]*TradeReceiptItem, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
-	respBody, err := ioutil.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -343,7 +343,7 @@ func (c *Client) getEscrowDuration(queryUrl string) (*EscrowDuration, error) {
 		return nil, fmt.Errorf("failed to retrieve escrow duration: %v", err)
 	}
 	defer resp.Body.Close()
-	respBody, err := ioutil.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
