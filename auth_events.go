@@ -36,7 +36,8 @@ type LoginKeyEvent struct {
 }
 
 type LoggedOffEvent struct {
-	Result steamlang.EResult
+	Result       steamlang.EResult
+	MinReconnect int32
 }
 
 type MachineAuthUpdateEvent struct {

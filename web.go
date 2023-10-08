@@ -92,7 +92,7 @@ func (w *Web) apiLogOn() error {
 	if resp.StatusCode == 401 {
 		// our web login key has expired, request a new one
 		atomic.StoreUint32(&w.relogOnNonce, 1)
-		w.client.Write(protocol.NewClientMsgProtobuf(steamlang.EMsg_ClientRequestWebAPIAuthenticateUserNonce, new(protobuf.CMsgClientRequestWebAPIAuthenticateUserNonce)))
+		w.client.Send(protocol.NewClientMsgProtobuf(steamlang.EMsg_ClientRequestWebAPIAuthenticateUserNonce, new(protobuf.CMsgClientRequestWebAPIAuthenticateUserNonce)))
 		return nil
 	} else if resp.StatusCode != 200 {
 		return errors.New("steam.Web.apiLogOn: request failed with status " + resp.Status)
@@ -120,7 +120,7 @@ func (w *Web) handleNewLoginKey(packet *protocol.Packet) {
 	msg := new(protobuf.CMsgClientNewLoginKey)
 	packet.ReadProtoMsg(msg)
 
-	w.client.Write(protocol.NewClientMsgProtobuf(steamlang.EMsg_ClientNewLoginKeyAccepted, &protobuf.CMsgClientNewLoginKeyAccepted{
+	w.client.Send(protocol.NewClientMsgProtobuf(steamlang.EMsg_ClientNewLoginKeyAccepted, &protobuf.CMsgClientNewLoginKeyAccepted{
 		UniqueId: proto.Uint32(msg.GetUniqueId()),
 	}))
 

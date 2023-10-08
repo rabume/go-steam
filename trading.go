@@ -55,7 +55,7 @@ func (t *Trading) HandlePacket(packet *protocol.Packet) {
 // Requests a trade. You'll receive a TradeResultEvent if the request fails or
 // if the friend accepted the trade.
 func (t *Trading) RequestTrade(other steamid.SteamId) {
-	t.client.Write(protocol.NewClientMsgProtobuf(steamlang.EMsg_EconTrading_InitiateTradeRequest, &protobuf.CMsgTrading_InitiateTradeRequest{
+	t.client.Send(protocol.NewClientMsgProtobuf(steamlang.EMsg_EconTrading_InitiateTradeRequest, &protobuf.CMsgTrading_InitiateTradeRequest{
 		OtherSteamid: proto.Uint64(uint64(other)),
 	}))
 }
@@ -69,7 +69,7 @@ func (t *Trading) RespondRequest(requestId TradeRequestId, accept bool) {
 		resp = 1
 	}
 
-	t.client.Write(protocol.NewClientMsgProtobuf(steamlang.EMsg_EconTrading_InitiateTradeResponse, &protobuf.CMsgTrading_InitiateTradeResponse{
+	t.client.Send(protocol.NewClientMsgProtobuf(steamlang.EMsg_EconTrading_InitiateTradeResponse, &protobuf.CMsgTrading_InitiateTradeResponse{
 		TradeRequestId: proto.Uint32(uint32(requestId)),
 		Response:       proto.Uint32(resp),
 	}))
@@ -77,7 +77,7 @@ func (t *Trading) RespondRequest(requestId TradeRequestId, accept bool) {
 
 // This cancels a request made with RequestTrade.
 func (t *Trading) CancelRequest(other steamid.SteamId) {
-	t.client.Write(protocol.NewClientMsgProtobuf(steamlang.EMsg_EconTrading_CancelTradeRequest, &protobuf.CMsgTrading_CancelTradeRequest{
+	t.client.Send(protocol.NewClientMsgProtobuf(steamlang.EMsg_EconTrading_CancelTradeRequest, &protobuf.CMsgTrading_CancelTradeRequest{
 		OtherSteamid: proto.Uint64(uint64(other)),
 	}))
 }

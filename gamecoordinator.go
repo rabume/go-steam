@@ -58,7 +58,7 @@ func (g *GameCoordinator) Write(msg gamecoordinator.IGCMsg) {
 		msgType = msgType | 0x80000000 // mask with protoMask
 	}
 
-	g.client.Write(protocol.NewClientMsgProtobuf(steamlang.EMsg_ClientToGC, &protobuf.CMsgGCClient{
+	g.client.Send(protocol.NewClientMsgProtobuf(steamlang.EMsg_ClientToGC, &protobuf.CMsgGCClient{
 		Msgtype: proto.Uint32(msgType),
 		Appid:   proto.Uint32(msg.GetAppId()),
 		Payload: buf.Bytes(),
@@ -74,7 +74,7 @@ func (g *GameCoordinator) SetGamesPlayed(appIds ...uint64) {
 		})
 	}
 
-	g.client.Write(protocol.NewClientMsgProtobuf(steamlang.EMsg_ClientGamesPlayed, &protobuf.CMsgClientGamesPlayed{
+	g.client.Send(protocol.NewClientMsgProtobuf(steamlang.EMsg_ClientGamesPlayed, &protobuf.CMsgClientGamesPlayed{
 		GamesPlayed: games,
 	}))
 }
