@@ -66,6 +66,17 @@ type PacketHandler interface {
 	HandlePacket(*protocol.Packet)
 }
 
+// Do not use this
+// Call Read / WriteLoop explicitelly if needed
+func NewManualClient() *Client {
+	return &Client{
+		events:      make(chan interface{}, 3),
+		writeBuf:    new(bytes.Buffer),
+		JobHandlers: make(map[uint64]func(*protocol.Packet) error),
+		manual: true,
+	}
+}
+
 func NewClient() *Client {
 	client := &Client{
 		events:      make(chan interface{}, 3),
