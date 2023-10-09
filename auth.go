@@ -274,9 +274,6 @@ func (a *Auth) updateAuthSession(code string, codeType protobuf.EAuthSessionGuar
 }
 
 func (a *Auth) handleAuthSessionUpdate(packet *protocol.Packet) error {
-
-	fmt.Println("AuthSession Update")
-
 	body := new(protobuf.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response)
 	_ = packet.ReadProtoMsg(body)
 
@@ -318,10 +315,7 @@ func (a *Auth) handlePollResponse(packet *protocol.Packet) error {
 	a.Details.RefreshToken = *body.RefreshToken
 	if body.NewGuardData != nil {
 		a.Details.GuardData = *body.NewGuardData
-		fmt.Printf("Guard Data: %s\n", *body.NewGuardData)
 	}
-
-	fmt.Printf("Refresh Token: %s\n", *body.RefreshToken)
 
 	a.LogOn(a.Details)
 	return nil
