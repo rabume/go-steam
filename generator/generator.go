@@ -126,10 +126,10 @@ var clientProtoFiles = map[string]string{
 	"steammessages_partnerapps.steamclient.proto":       "unified/partnerapps.pb.go",
 	"steammessages_player.steamclient.proto":            "unified/player.pb.go",
 	"steammessages_publishedfile.steamclient.proto":     "unified/publishedfile.pb.go",
-	"steammessages_client_objects.proto": 			  	 "unified/objects.pb.go",
+	"steammessages_client_objects.proto":                "unified/objects.pb.go",
 	"enums.proto":                                       "unified/enums.pb.go",
-	"offline_ticket.proto": 							 "unified/offline_ticket.pb.go",
-	"enums_productinfo.proto": 							 "unified/enums_productinfo.pb.go",
+	"offline_ticket.proto":                              "unified/offline_ticket.pb.go",
+	"enums_productinfo.proto":                           "unified/enums_productinfo.pb.go",
 }
 
 var tf2ProtoFiles = map[string]string{
@@ -141,18 +141,18 @@ var tf2ProtoFiles = map[string]string{
 }
 
 var dotaProtoFiles = map[string]string{
-	"base_gcmessages.proto":   "base.pb.go",
-	"econ_shared_enums.proto": "econ_shared_enum.pb.go",
-	"econ_gcmessages.proto":   "econ.pb.go",
-	"gcsdk_gcmessages.proto":  "gcsdk.pb.go",
-	"gcsystemmsgs.proto":      "system.pb.go",
-	"steammessages.proto":     "steam.pb.go",
-	"steammessages_unified_base.steamworkssdk.proto": "unified/base.pb.go",
-	"steammessages_steamlearn.steamworkssdk.proto":   "unified/learn.pb.go",
+	"base_gcmessages.proto":                          "base.pb.go",
+	"econ_shared_enums.proto":                        "econ_shared_enum.pb.go",
+	"econ_gcmessages.proto":                          "econ.pb.go",
+	"gcsdk_gcmessages.proto":                         "gcsdk.pb.go",
+	"gcsystemmsgs.proto":                             "system.pb.go",
+	"steammessages.proto":                            "steam.pb.go",
+	"steammessages_unified_base.steamworkssdk.proto": "steamworkssdk.pb.go",
+	"steammessages_steamlearn.steamworkssdk.proto":   "steamlearn.pb.go",
 }
 
 var csgoProtoFiles = map[string]string{
-	"base_gcmessages_csgo.proto":    "base.pb.go",
+	"base_gcmessages_csgo.proto":   "base.pb.go",
 	"cstrike15_gcmessages.proto":   "cstrike15gc.pb.go",
 	"cstrike15_usermessages.proto": "cstrike15user.pb.go",
 	"econ_gcmessages.proto":        "econ.pb.go",
@@ -164,7 +164,7 @@ var csgoProtoFiles = map[string]string{
 	"network_connection.proto":     "networkconnection.pb.go",
 	"steammessages.proto":          "steam.pb.go",
 	"uifontfile_format.proto":      "uifontfile.pb.go",
-	"networkbasetypes.proto": 	 	"networkbasetypes.pb.go",
+	"networkbasetypes.proto":       "networkbasetypes.pb.go",
 }
 
 func compileProto(srcBase, srcSubdir, proto, target string, opt []string) {
