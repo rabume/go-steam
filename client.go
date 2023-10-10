@@ -13,12 +13,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/0xAozora/go-steam/cryptoutil"
-	"github.com/0xAozora/go-steam/netutil"
-	"github.com/0xAozora/go-steam/protocol"
-	"github.com/0xAozora/go-steam/protocol/protobuf"
-	"github.com/0xAozora/go-steam/protocol/steamlang"
-	"github.com/0xAozora/go-steam/steamid"
+	"github.com/rabume/go-steam/cryptoutil"
+	"github.com/rabume/go-steam/netutil"
+	"github.com/rabume/go-steam/protocol"
+	"github.com/rabume/go-steam/protocol/protobuf"
+	"github.com/rabume/go-steam/protocol/steamlang"
+	"github.com/rabume/go-steam/steamid"
 	"golang.org/x/net/proxy"
 )
 

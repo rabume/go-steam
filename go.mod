@@ -1,4 +1,4 @@
-module github.com/0xAozora/go-steam
+module github.com/rabume/go-steam
 
 go 1.21
 

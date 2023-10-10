@@ -4,8 +4,8 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/0xAozora/go-steam/protocol/steamlang"
-	"github.com/0xAozora/go-steam/steamid"
+	"github.com/rabume/go-steam/protocol/steamlang"
+	"github.com/rabume/go-steam/steamid"
 )
 
 // Groups list is a thread safe map

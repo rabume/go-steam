@@ -9,8 +9,8 @@ import (
 	"net"
 	"sync"
 
-	"github.com/0xAozora/go-steam/cryptoutil"
-	"github.com/0xAozora/go-steam/protocol"
+	"github.com/rabume/go-steam/cryptoutil"
+	"github.com/rabume/go-steam/protocol"
 	"golang.org/x/net/proxy"
 )
 

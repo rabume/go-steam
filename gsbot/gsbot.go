@@ -21,9 +21,9 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/0xAozora/go-steam"
-	"github.com/0xAozora/go-steam/netutil"
-	"github.com/0xAozora/go-steam/protocol"
+	"github.com/rabume/go-steam"
+	"github.com/rabume/go-steam/netutil"
+	"github.com/rabume/go-steam/protocol"
 	"github.com/davecgh/go-spew/spew"
 )
 
