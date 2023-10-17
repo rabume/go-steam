@@ -9,7 +9,7 @@ package unified
 import (
 	
 	
-	
+	"github.com/rabume/go-steam/protocol/protobuf"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -3223,13 +3223,13 @@ type ProfileCustomizationSlot struct {
 	BorderColor     *uint32                                          `protobuf:"varint,10,opt,name=border_color,json=borderColor" json:"border_color,omitempty"`
 	ItemClassid     *uint64                                          `protobuf:"varint,11,opt,name=item_classid,json=itemClassid" json:"item_classid,omitempty"`
 	ItemInstanceid  *uint64                                          `protobuf:"varint,12,opt,name=item_instanceid,json=itemInstanceid" json:"item_instanceid,omitempty"`
-	BanCheckResult  *EBanContentCheckResult `protobuf:"varint,13,opt,name=ban_check_result,json=banCheckResult,enum=EBanContentCheckResult,def=0" json:"ban_check_result,omitempty"`
+	BanCheckResult  *protobuf.EBanContentCheckResult `protobuf:"varint,13,opt,name=ban_check_result,json=banCheckResult,enum=EBanContentCheckResult,def=0" json:"ban_check_result,omitempty"`
 	ReplayYear      *uint32                                          `protobuf:"varint,14,opt,name=replay_year,json=replayYear" json:"replay_year,omitempty"`
 }
 
 // Default values for ProfileCustomizationSlot fields.
 const (
-	Default_ProfileCustomizationSlot_BanCheckResult = EBanContentCheckResult(0) // EBanContentCheckResult_k_EBanContentCheckResult_NotScanned
+	Default_ProfileCustomizationSlot_BanCheckResult = protobuf.EBanContentCheckResult(0) // EBanContentCheckResult_k_EBanContentCheckResult_NotScanned
 )
 
 func (x *ProfileCustomizationSlot) Reset() {
@@ -3348,7 +3348,7 @@ func (x *ProfileCustomizationSlot) GetItemInstanceid() uint64 {
 	return 0
 }
 
-func (x *ProfileCustomizationSlot) GetBanCheckResult() EBanContentCheckResult {
+func (x *ProfileCustomizationSlot) GetBanCheckResult() protobuf.EBanContentCheckResult {
 	if x != nil && x.BanCheckResult != nil {
 		return *x.BanCheckResult
 	}
@@ -5513,7 +5513,7 @@ type CPlayer_GetCommunityPreferences_Response struct {
 	unknownFields protoimpl.UnknownFields
 
 	Preferences                  *CPlayer_CommunityPreferences                              `protobuf:"bytes,1,opt,name=preferences" json:"preferences,omitempty"`
-	ContentDescriptorPreferences *UserContentDescriptorPreferences `protobuf:"bytes,2,opt,name=content_descriptor_preferences,json=contentDescriptorPreferences" json:"content_descriptor_preferences,omitempty"`
+	ContentDescriptorPreferences *protobuf.UserContentDescriptorPreferences `protobuf:"bytes,2,opt,name=content_descriptor_preferences,json=contentDescriptorPreferences" json:"content_descriptor_preferences,omitempty"`
 }
 
 func (x *CPlayer_GetCommunityPreferences_Response) Reset() {
@@ -5555,7 +5555,7 @@ func (x *CPlayer_GetCommunityPreferences_Response) GetPreferences() *CPlayer_Com
 	return nil
 }
 
-func (x *CPlayer_GetCommunityPreferences_Response) GetContentDescriptorPreferences() *UserContentDescriptorPreferences {
+func (x *CPlayer_GetCommunityPreferences_Response) GetContentDescriptorPreferences() *protobuf.UserContentDescriptorPreferences {
 	if x != nil {
 		return x.ContentDescriptorPreferences
 	}
@@ -6673,7 +6673,7 @@ type CPlayer_CommunityPreferencesChanged_Notification struct {
 	unknownFields protoimpl.UnknownFields
 
 	Preferences                  *CPlayer_CommunityPreferences                              `protobuf:"bytes,1,opt,name=preferences" json:"preferences,omitempty"`
-	ContentDescriptorPreferences *UserContentDescriptorPreferences `protobuf:"bytes,2,opt,name=content_descriptor_preferences,json=contentDescriptorPreferences" json:"content_descriptor_preferences,omitempty"`
+	ContentDescriptorPreferences *protobuf.UserContentDescriptorPreferences `protobuf:"bytes,2,opt,name=content_descriptor_preferences,json=contentDescriptorPreferences" json:"content_descriptor_preferences,omitempty"`
 }
 
 func (x *CPlayer_CommunityPreferencesChanged_Notification) Reset() {
@@ -6715,7 +6715,7 @@ func (x *CPlayer_CommunityPreferencesChanged_Notification) GetPreferences() *CPl
 	return nil
 }
 
-func (x *CPlayer_CommunityPreferencesChanged_Notification) GetContentDescriptorPreferences() *UserContentDescriptorPreferences {
+func (x *CPlayer_CommunityPreferencesChanged_Notification) GetContentDescriptorPreferences() *protobuf.UserContentDescriptorPreferences {
 	if x != nil {
 		return x.ContentDescriptorPreferences
 	}
@@ -11014,9 +11014,9 @@ var file_steammessages_player_steamclient_proto_goTypes = []interface{}{
 	(*CPlayer_GetNicknameList_Response_PlayerNickname)(nil),                                      // 142: CPlayer_GetNicknameList_Response.PlayerNickname
 	(*CPlayer_RecordDisconnectedPlaytime_Request_PlayHistory)(nil),                               // 143: CPlayer_RecordDisconnectedPlaytime_Request.PlayHistory
 	(ECommunityItemClass)(0),                                                         // 144: ECommunityItemClass
-	(EBanContentCheckResult)(0),                                         // 145: EBanContentCheckResult
+	(protobuf.EBanContentCheckResult)(0),                                         // 145: EBanContentCheckResult
 	(EProfileCustomizationType)(0),                                                   // 146: EProfileCustomizationType
-	(*UserContentDescriptorPreferences)(nil),                            // 147: UserContentDescriptorPreferences
+	(*protobuf.UserContentDescriptorPreferences)(nil),                            // 147: UserContentDescriptorPreferences
 	(ENewSteamAnnouncementState)(0),                                                  // 148: ENewSteamAnnouncementState
 	(*NoResponse)(nil),                              // 149: NoResponse
 }
