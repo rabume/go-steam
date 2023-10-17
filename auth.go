@@ -158,7 +158,7 @@ func (a *Auth) handleLoginKey(packet *protocol.Packet) {
 }
 
 func (a *Auth) handleLoggedOff(packet *protocol.Packet) {
-	result := steamlang.EResult_Invalid
+	var result steamlang.EResult
 
 	if packet.IsProto {
 		body := new(protobuf.CMsgClientLoggedOff)
