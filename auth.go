@@ -3,6 +3,7 @@ package steam
 import (
 	"crypto/sha1"
 	"sync/atomic"
+	"time"
 
 	"github.com/rabume/go-steam/protocol"
 	"github.com/rabume/go-steam/protocol/protobuf"
@@ -113,13 +114,13 @@ func (a *Auth) handleLogOnResponse(packet *protocol.Packet) {
 		atomic.StoreUint64(&a.client.steamId, msg.Header.Proto.GetSteamid())
 		a.client.Web.webLoginKey = *body.WebapiAuthenticateUserNonce
 
-		// go a.client.heartbeatLoop(time.Duration(body.GetOutOfGameHeartbeatSeconds()))
+		go a.client.heartbeatLoop(time.Duration(body.GetLegacyOutOfGameHeartbeatSeconds()))
 
 		a.client.Emit(&LoggedOnEvent{
-			Result:         steamlang.EResult(body.GetEresult()),
-			ExtendedResult: steamlang.EResult(body.GetEresultExtended()),
-			// OutOfGameSecsPerHeartbeat: body.GetOutOfGameHeartbeatSeconds(),
-			// InGameSecsPerHeartbeat:    body.GetInGameHeartbeatSeconds(),
+			Result:                    steamlang.EResult(body.GetEresult()),
+			ExtendedResult:            steamlang.EResult(body.GetEresultExtended()),
+			OutOfGameSecsPerHeartbeat: body.GetLegacyOutOfGameHeartbeatSeconds(),
+			InGameSecsPerHeartbeat:    body.GetHeartbeatSeconds(),
 			PublicIp:                  body.GetDeprecatedPublicIp(),
 			ServerTime:                body.GetRtime32ServerTime(),
 			AccountFlags:              steamlang.EAccountFlags(body.GetAccountFlags()),
@@ -137,6 +138,9 @@ func (a *Auth) handleLogOnResponse(packet *protocol.Packet) {
 		})
 	} else if result == steamlang.EResult_Fail || result == steamlang.EResult_ServiceUnavailable || result == steamlang.EResult_TryAnotherCM {
 		// some error on Steam's side, we'll get an EOF later
+		a.client.Emit(&LoggedOnEvent{
+			Result: steamlang.EResult(body.GetEresult()),
+		})
 	} else {
 		a.client.Emit(&LogOnFailedEvent{
 			Result: steamlang.EResult(body.GetEresult()),
