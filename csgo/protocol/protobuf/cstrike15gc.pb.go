@@ -4255,6 +4255,8 @@ type CMsgGCCStrike15V2_MatchmakingGC2ClientReserve struct {
 	Reservation   *CMsgGCCStrike15V2_MatchmakingGC2ServerReserve `protobuf:"bytes,5,opt,name=reservation" json:"reservation,omitempty"`
 	Map           *string                                        `protobuf:"bytes,6,opt,name=map" json:"map,omitempty"`
 	ServerAddress *string                                        `protobuf:"bytes,7,opt,name=server_address,json=serverAddress" json:"server_address,omitempty"`
+	GsPing        *DataCenterPing                                `protobuf:"bytes,8,opt,name=gs_ping,json=gsPing" json:"gs_ping,omitempty"`
+	GsLocationId  *uint32                                        `protobuf:"varint,9,opt,name=gs_location_id,json=gsLocationId" json:"gs_location_id,omitempty"`
 }
 
 func (x *CMsgGCCStrike15V2_MatchmakingGC2ClientReserve) Reset() {
@@ -4336,6 +4338,20 @@ func (x *CMsgGCCStrike15V2_MatchmakingGC2ClientReserve) GetServerAddress() strin
 		return *x.ServerAddress
 	}
 	return ""
+}
+
+func (x *CMsgGCCStrike15V2_MatchmakingGC2ClientReserve) GetGsPing() *DataCenterPing {
+	if x != nil {
+		return x.GsPing
+	}
+	return nil
+}
+
+func (x *CMsgGCCStrike15V2_MatchmakingGC2ClientReserve) GetGsLocationId() uint32 {
+	if x != nil && x.GsLocationId != nil {
+		return *x.GsLocationId
+	}
+	return 0
 }
 
 type CMsgGCCStrike15V2_MatchmakingServerRoundStats struct {
@@ -13969,7 +13985,7 @@ var file_cstrike15_gcmessages_proto_rawDesc = []byte{
 	0x6f, 0x75, 0x74, 0x69, 0x6e, 0x67, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x74,
 	0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x0f, 0x20, 0x01, 0x28, 0x07, 0x52, 0x09, 0x74, 0x65, 0x73, 0x74,
 	0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x66, 0x6c, 0x61, 0x67, 0x73, 0x18, 0x10,
-	0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x66, 0x6c, 0x61, 0x67, 0x73, 0x22, 0xca, 0x02, 0x0a, 0x2e,
+	0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x66, 0x6c, 0x61, 0x67, 0x73, 0x22, 0x9a, 0x03, 0x0a, 0x2e,
 	0x43, 0x4d, 0x73, 0x67, 0x47, 0x43, 0x43, 0x53, 0x74, 0x72, 0x69, 0x6b, 0x65, 0x31, 0x35, 0x5f,
 	0x76, 0x32, 0x5f, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x6d, 0x61, 0x6b, 0x69, 0x6e, 0x67, 0x47, 0x43,
 	0x32, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x65, 0x72, 0x76, 0x65, 0x12, 0x1a,
@@ -13990,7 +14006,12 @@ var file_cstrike15_gcmessages_proto_rawDesc = []byte{
 	0x10, 0x0a, 0x03, 0x6d, 0x61, 0x70, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x61,
 	0x70, 0x12, 0x25, 0x0a, 0x0e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72,
 	0x65, 0x73, 0x73, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0xf2, 0x09, 0x0a, 0x2e, 0x43, 0x4d, 0x73,
+	0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x28, 0x0a, 0x07, 0x67, 0x73, 0x5f, 0x70,
+	0x69, 0x6e, 0x67, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x44, 0x61, 0x74, 0x61,
+	0x43, 0x65, 0x6e, 0x74, 0x65, 0x72, 0x50, 0x69, 0x6e, 0x67, 0x52, 0x06, 0x67, 0x73, 0x50, 0x69,
+	0x6e, 0x67, 0x12, 0x24, 0x0a, 0x0e, 0x67, 0x73, 0x5f, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x5f, 0x69, 0x64, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0c, 0x67, 0x73, 0x4c, 0x6f,
+	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x22, 0xf2, 0x09, 0x0a, 0x2e, 0x43, 0x4d, 0x73,
 	0x67, 0x47, 0x43, 0x43, 0x53, 0x74, 0x72, 0x69, 0x6b, 0x65, 0x31, 0x35, 0x5f, 0x76, 0x32, 0x5f,
 	0x4d, 0x61, 0x74, 0x63, 0x68, 0x6d, 0x61, 0x6b, 0x69, 0x6e, 0x67, 0x53, 0x65, 0x72, 0x76, 0x65,
 	0x72, 0x52, 0x6f, 0x75, 0x6e, 0x64, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x24, 0x0a, 0x0d, 0x72,
@@ -15948,74 +15969,75 @@ var file_cstrike15_gcmessages_proto_depIdxs = []int32{
 	39,  // 28: CMsgGCCStrike15_v2_MatchmakingServerReservationResponse.reservation:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ServerReserve
 	20,  // 29: CMsgGCCStrike15_v2_MatchmakingServerReservationResponse.tv_info:type_name -> ServerHltvInfo
 	39,  // 30: CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve.reservation:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ServerReserve
-	39,  // 31: CMsgGCCStrike15_v2_MatchmakingServerRoundStats.reservation:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ServerReserve
-	30,  // 32: CMsgGCCStrike15_v2_MatchmakingServerRoundStats.confirm:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ServerConfirm
-	150, // 33: CMsgGCCStrike15_v2_MatchmakingServerRoundStats.drop_info:type_name -> CMsgGCCStrike15_v2_MatchmakingServerRoundStats.DropInfo
-	41,  // 34: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.ongoingmatch:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve
-	10,  // 35: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.global_stats:type_name -> GlobalStatistics
-	15,  // 36: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.ranking:type_name -> PlayerRankingInfo
-	16,  // 37: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.commendation:type_name -> PlayerCommendationInfo
-	17,  // 38: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.medals:type_name -> PlayerMedalsInfo
-	9,   // 39: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.my_current_event:type_name -> TournamentEvent
-	8,   // 40: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.my_current_event_teams:type_name -> TournamentTeam
-	8,   // 41: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.my_current_team:type_name -> TournamentTeam
-	9,   // 42: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.my_current_event_stages:type_name -> TournamentEvent
-	18,  // 43: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.activity:type_name -> AccountActivity
-	15,  // 44: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.rankings:type_name -> PlayerRankingInfo
-	151, // 45: CMsgGCCStrike15_v2_AccountPrivacySettings.settings:type_name -> CMsgGCCStrike15_v2_AccountPrivacySettings.Setting
-	41,  // 46: CMsgGCCStrike15_v2_MatchmakingGC2ClientAbandon.abandoned_match:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve
-	15,  // 47: CMsgGCCStrike15_v2_ClientGCRankUpdate.rankings:type_name -> PlayerRankingInfo
-	16,  // 48: CMsgGCCStrike15_v2_ClientCommendPlayer.commendation:type_name -> PlayerCommendationInfo
-	5,   // 49: CMsgGCCStrike15_v2_ClientRequestWatchInfoFriends.data_center_pings:type_name -> DataCenterPing
-	41,  // 50: CMsgGCCStrike15_v2_ClientRequestJoinFriendData.res:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve
-	41,  // 51: CMsgGCCStrike15_v2_ClientRequestJoinServerData.res:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve
-	23,  // 52: CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.xp_progress_data:type_name -> XpProgressData
-	152, // 53: CMsgGCCStrike15_ClientDeepStats.range:type_name -> CMsgGCCStrike15_ClientDeepStats.DeepStatsRange
-	153, // 54: CMsgGCCStrike15_ClientDeepStats.matches:type_name -> CMsgGCCStrike15_ClientDeepStats.DeepStatsMatch
-	55,  // 55: CMsgGCCStrike15_v2_WatchInfoUsers.watchable_match_infos:type_name -> WatchableMatchInfo
-	44,  // 56: CMsgGCCStrike15_v2_PlayersProfile.account_profiles:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientHello
-	40,  // 57: CMsgGCCStrike15_v2_MatchEndRunRewardDrops.serverinfo:type_name -> CMsgGCCStrike15_v2_MatchmakingServerReservationResponse
-	29,  // 58: CMsgGCCStrike15_v2_MatchEndRunRewardDrops.match_end_quest_data:type_name -> CMsgGC_ServerQuestUpdateData
-	154, // 59: CEconItemPreviewDataBlock.stickers:type_name -> CEconItemPreviewDataBlock.Sticker
-	73,  // 60: CMsgGCCStrike15_v2_MatchEndRewardDropsNotification.iteminfo:type_name -> CEconItemPreviewDataBlock
-	73,  // 61: CMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse.iteminfo:type_name -> CEconItemPreviewDataBlock
-	55,  // 62: CDataGCCStrike15_v2_MatchInfo.watchablematchinfo:type_name -> WatchableMatchInfo
-	42,  // 63: CDataGCCStrike15_v2_MatchInfo.roundstats_legacy:type_name -> CMsgGCCStrike15_v2_MatchmakingServerRoundStats
-	42,  // 64: CDataGCCStrike15_v2_MatchInfo.roundstatsall:type_name -> CMsgGCCStrike15_v2_MatchmakingServerRoundStats
-	83,  // 65: CDataGCCStrike15_v2_TournamentGroup.teams:type_name -> CDataGCCStrike15_v2_TournamentGroupTeam
-	155, // 66: CDataGCCStrike15_v2_TournamentGroup.picks:type_name -> CDataGCCStrike15_v2_TournamentGroup.Picks
-	84,  // 67: CDataGCCStrike15_v2_TournamentSection.groups:type_name -> CDataGCCStrike15_v2_TournamentGroup
-	85,  // 68: CDataGCCStrike15_v2_TournamentInfo.sections:type_name -> CDataGCCStrike15_v2_TournamentSection
-	9,   // 69: CDataGCCStrike15_v2_TournamentInfo.tournament_event:type_name -> TournamentEvent
-	8,   // 70: CDataGCCStrike15_v2_TournamentInfo.tournament_teams:type_name -> TournamentTeam
-	82,  // 71: CMsgGCCStrike15_v2_MatchList.matches:type_name -> CDataGCCStrike15_v2_MatchInfo
-	8,   // 72: CMsgGCCStrike15_v2_MatchList.streams:type_name -> TournamentTeam
-	86,  // 73: CMsgGCCStrike15_v2_MatchList.tournamentinfo:type_name -> CDataGCCStrike15_v2_TournamentInfo
-	82,  // 74: CMsgGCCStrike15_v2_MatchListTournamentOperatorMgmt.matches:type_name -> CDataGCCStrike15_v2_MatchInfo
-	156, // 75: CMsgGCCStrike15_v2_Predictions.group_match_team_picks:type_name -> CMsgGCCStrike15_v2_Predictions.GroupMatchTeamPick
-	158, // 76: CMsgGCCStrike15_v2_Fantasy.teams:type_name -> CMsgGCCStrike15_v2_Fantasy.FantasyTeam
-	165, // 77: CMsgLegacySource1ClientWelcome.outofdate_subscribed_caches:type_name -> CMsgSOCacheSubscribed
-	166, // 78: CMsgLegacySource1ClientWelcome.uptodate_subscribed_caches:type_name -> CMsgSOCacheSubscriptionCheck
-	159, // 79: CMsgLegacySource1ClientWelcome.location:type_name -> CMsgLegacySource1ClientWelcome.Location
-	160, // 80: CMsgGCCStrike15_v2_GiftsLeaderboardResponse.entries:type_name -> CMsgGCCStrike15_v2_GiftsLeaderboardResponse.GiftLeaderboardEntry
-	16,  // 81: CSOPersonaDataPublic.commendation:type_name -> PlayerCommendationInfo
-	167, // 82: CMsgGCCStrike15_GotvSyncPacket.data:type_name -> CEngineGotvSyncPacket
-	117, // 83: CMsgGCCStrike15_v2_ClientPlayerDecalSign.data:type_name -> PlayerDecalDigitalSignature
-	161, // 84: CMsgGCCStrike15_v2_Party_SearchResults.entries:type_name -> CMsgGCCStrike15_v2_Party_SearchResults.Entry
-	162, // 85: CMsgGCCStrike15_v2_Account_RequestCoPlays.players:type_name -> CMsgGCCStrike15_v2_Account_RequestCoPlays.Player
-	163, // 86: CMsgGCCStrike15_v2_ClientPartyWarning.entries:type_name -> CMsgGCCStrike15_v2_ClientPartyWarning.Entry
-	164, // 87: CMsgGCCStrike15_v2_ClientPerfReport.entries:type_name -> CMsgGCCStrike15_v2_ClientPerfReport.Entry
-	137, // 88: CMsgGCCStrike15_v2_ClientReportValidation.diagnostics:type_name -> CVDiagnostic
-	3,   // 89: CMsgGCCStrike15_v2_GC2ClientInitSystem_Response.einit_result:type_name -> EInitSystemResult
-	145, // 90: ScoreLeaderboardData.AccountEntries.entries:type_name -> ScoreLeaderboardData.Entry
-	27,  // 91: CMsgGCCStrike15_ClientDeepStats.DeepStatsMatch.player:type_name -> DeepPlayerStatsEntry
-	28,  // 92: CMsgGCCStrike15_ClientDeepStats.DeepStatsMatch.events:type_name -> DeepPlayerMatchEvent
-	157, // 93: CMsgGCCStrike15_v2_Fantasy.FantasyTeam.slots:type_name -> CMsgGCCStrike15_v2_Fantasy.FantasySlot
-	94,  // [94:94] is the sub-list for method output_type
-	94,  // [94:94] is the sub-list for method input_type
-	94,  // [94:94] is the sub-list for extension type_name
-	94,  // [94:94] is the sub-list for extension extendee
-	0,   // [0:94] is the sub-list for field type_name
+	5,   // 31: CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve.gs_ping:type_name -> DataCenterPing
+	39,  // 32: CMsgGCCStrike15_v2_MatchmakingServerRoundStats.reservation:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ServerReserve
+	30,  // 33: CMsgGCCStrike15_v2_MatchmakingServerRoundStats.confirm:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ServerConfirm
+	150, // 34: CMsgGCCStrike15_v2_MatchmakingServerRoundStats.drop_info:type_name -> CMsgGCCStrike15_v2_MatchmakingServerRoundStats.DropInfo
+	41,  // 35: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.ongoingmatch:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve
+	10,  // 36: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.global_stats:type_name -> GlobalStatistics
+	15,  // 37: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.ranking:type_name -> PlayerRankingInfo
+	16,  // 38: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.commendation:type_name -> PlayerCommendationInfo
+	17,  // 39: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.medals:type_name -> PlayerMedalsInfo
+	9,   // 40: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.my_current_event:type_name -> TournamentEvent
+	8,   // 41: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.my_current_event_teams:type_name -> TournamentTeam
+	8,   // 42: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.my_current_team:type_name -> TournamentTeam
+	9,   // 43: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.my_current_event_stages:type_name -> TournamentEvent
+	18,  // 44: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.activity:type_name -> AccountActivity
+	15,  // 45: CMsgGCCStrike15_v2_MatchmakingGC2ClientHello.rankings:type_name -> PlayerRankingInfo
+	151, // 46: CMsgGCCStrike15_v2_AccountPrivacySettings.settings:type_name -> CMsgGCCStrike15_v2_AccountPrivacySettings.Setting
+	41,  // 47: CMsgGCCStrike15_v2_MatchmakingGC2ClientAbandon.abandoned_match:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve
+	15,  // 48: CMsgGCCStrike15_v2_ClientGCRankUpdate.rankings:type_name -> PlayerRankingInfo
+	16,  // 49: CMsgGCCStrike15_v2_ClientCommendPlayer.commendation:type_name -> PlayerCommendationInfo
+	5,   // 50: CMsgGCCStrike15_v2_ClientRequestWatchInfoFriends.data_center_pings:type_name -> DataCenterPing
+	41,  // 51: CMsgGCCStrike15_v2_ClientRequestJoinFriendData.res:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve
+	41,  // 52: CMsgGCCStrike15_v2_ClientRequestJoinServerData.res:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientReserve
+	23,  // 53: CMsgGCCstrike15_v2_GC2ServerNotifyXPRewarded.xp_progress_data:type_name -> XpProgressData
+	152, // 54: CMsgGCCStrike15_ClientDeepStats.range:type_name -> CMsgGCCStrike15_ClientDeepStats.DeepStatsRange
+	153, // 55: CMsgGCCStrike15_ClientDeepStats.matches:type_name -> CMsgGCCStrike15_ClientDeepStats.DeepStatsMatch
+	55,  // 56: CMsgGCCStrike15_v2_WatchInfoUsers.watchable_match_infos:type_name -> WatchableMatchInfo
+	44,  // 57: CMsgGCCStrike15_v2_PlayersProfile.account_profiles:type_name -> CMsgGCCStrike15_v2_MatchmakingGC2ClientHello
+	40,  // 58: CMsgGCCStrike15_v2_MatchEndRunRewardDrops.serverinfo:type_name -> CMsgGCCStrike15_v2_MatchmakingServerReservationResponse
+	29,  // 59: CMsgGCCStrike15_v2_MatchEndRunRewardDrops.match_end_quest_data:type_name -> CMsgGC_ServerQuestUpdateData
+	154, // 60: CEconItemPreviewDataBlock.stickers:type_name -> CEconItemPreviewDataBlock.Sticker
+	73,  // 61: CMsgGCCStrike15_v2_MatchEndRewardDropsNotification.iteminfo:type_name -> CEconItemPreviewDataBlock
+	73,  // 62: CMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse.iteminfo:type_name -> CEconItemPreviewDataBlock
+	55,  // 63: CDataGCCStrike15_v2_MatchInfo.watchablematchinfo:type_name -> WatchableMatchInfo
+	42,  // 64: CDataGCCStrike15_v2_MatchInfo.roundstats_legacy:type_name -> CMsgGCCStrike15_v2_MatchmakingServerRoundStats
+	42,  // 65: CDataGCCStrike15_v2_MatchInfo.roundstatsall:type_name -> CMsgGCCStrike15_v2_MatchmakingServerRoundStats
+	83,  // 66: CDataGCCStrike15_v2_TournamentGroup.teams:type_name -> CDataGCCStrike15_v2_TournamentGroupTeam
+	155, // 67: CDataGCCStrike15_v2_TournamentGroup.picks:type_name -> CDataGCCStrike15_v2_TournamentGroup.Picks
+	84,  // 68: CDataGCCStrike15_v2_TournamentSection.groups:type_name -> CDataGCCStrike15_v2_TournamentGroup
+	85,  // 69: CDataGCCStrike15_v2_TournamentInfo.sections:type_name -> CDataGCCStrike15_v2_TournamentSection
+	9,   // 70: CDataGCCStrike15_v2_TournamentInfo.tournament_event:type_name -> TournamentEvent
+	8,   // 71: CDataGCCStrike15_v2_TournamentInfo.tournament_teams:type_name -> TournamentTeam
+	82,  // 72: CMsgGCCStrike15_v2_MatchList.matches:type_name -> CDataGCCStrike15_v2_MatchInfo
+	8,   // 73: CMsgGCCStrike15_v2_MatchList.streams:type_name -> TournamentTeam
+	86,  // 74: CMsgGCCStrike15_v2_MatchList.tournamentinfo:type_name -> CDataGCCStrike15_v2_TournamentInfo
+	82,  // 75: CMsgGCCStrike15_v2_MatchListTournamentOperatorMgmt.matches:type_name -> CDataGCCStrike15_v2_MatchInfo
+	156, // 76: CMsgGCCStrike15_v2_Predictions.group_match_team_picks:type_name -> CMsgGCCStrike15_v2_Predictions.GroupMatchTeamPick
+	158, // 77: CMsgGCCStrike15_v2_Fantasy.teams:type_name -> CMsgGCCStrike15_v2_Fantasy.FantasyTeam
+	165, // 78: CMsgLegacySource1ClientWelcome.outofdate_subscribed_caches:type_name -> CMsgSOCacheSubscribed
+	166, // 79: CMsgLegacySource1ClientWelcome.uptodate_subscribed_caches:type_name -> CMsgSOCacheSubscriptionCheck
+	159, // 80: CMsgLegacySource1ClientWelcome.location:type_name -> CMsgLegacySource1ClientWelcome.Location
+	160, // 81: CMsgGCCStrike15_v2_GiftsLeaderboardResponse.entries:type_name -> CMsgGCCStrike15_v2_GiftsLeaderboardResponse.GiftLeaderboardEntry
+	16,  // 82: CSOPersonaDataPublic.commendation:type_name -> PlayerCommendationInfo
+	167, // 83: CMsgGCCStrike15_GotvSyncPacket.data:type_name -> CEngineGotvSyncPacket
+	117, // 84: CMsgGCCStrike15_v2_ClientPlayerDecalSign.data:type_name -> PlayerDecalDigitalSignature
+	161, // 85: CMsgGCCStrike15_v2_Party_SearchResults.entries:type_name -> CMsgGCCStrike15_v2_Party_SearchResults.Entry
+	162, // 86: CMsgGCCStrike15_v2_Account_RequestCoPlays.players:type_name -> CMsgGCCStrike15_v2_Account_RequestCoPlays.Player
+	163, // 87: CMsgGCCStrike15_v2_ClientPartyWarning.entries:type_name -> CMsgGCCStrike15_v2_ClientPartyWarning.Entry
+	164, // 88: CMsgGCCStrike15_v2_ClientPerfReport.entries:type_name -> CMsgGCCStrike15_v2_ClientPerfReport.Entry
+	137, // 89: CMsgGCCStrike15_v2_ClientReportValidation.diagnostics:type_name -> CVDiagnostic
+	3,   // 90: CMsgGCCStrike15_v2_GC2ClientInitSystem_Response.einit_result:type_name -> EInitSystemResult
+	145, // 91: ScoreLeaderboardData.AccountEntries.entries:type_name -> ScoreLeaderboardData.Entry
+	27,  // 92: CMsgGCCStrike15_ClientDeepStats.DeepStatsMatch.player:type_name -> DeepPlayerStatsEntry
+	28,  // 93: CMsgGCCStrike15_ClientDeepStats.DeepStatsMatch.events:type_name -> DeepPlayerMatchEvent
+	157, // 94: CMsgGCCStrike15_v2_Fantasy.FantasyTeam.slots:type_name -> CMsgGCCStrike15_v2_Fantasy.FantasySlot
+	95,  // [95:95] is the sub-list for method output_type
+	95,  // [95:95] is the sub-list for method input_type
+	95,  // [95:95] is the sub-list for extension type_name
+	95,  // [95:95] is the sub-list for extension extendee
+	0,   // [0:95] is the sub-list for field type_name
 }
 
 func init() { file_cstrike15_gcmessages_proto_init() }
