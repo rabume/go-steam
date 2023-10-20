@@ -4078,7 +4078,7 @@ const (
 	EAccountFlags_Lockdown                   EAccountFlags = 8388608
 	EAccountFlags_MasterAppEditor            EAccountFlags = 16777216
 	EAccountFlags_BannedFromWebAPI           EAccountFlags = 33554432
-	EAccountFlags_ClansOnlyFromFriends       EAccountFlags = 67108864
+	EAccountFlags_PartnerMember              EAccountFlags = 67108864
 	EAccountFlags_GlobalModerator            EAccountFlags = 134217728
 	EAccountFlags_ParentalSettings           EAccountFlags = 268435456
 	EAccountFlags_ThirdPartySupport          EAccountFlags = 536870912
@@ -4113,7 +4113,7 @@ var EAccountFlags_name = map[EAccountFlags]string{
 	8388608:    "EAccountFlags_Lockdown",
 	16777216:   "EAccountFlags_MasterAppEditor",
 	33554432:   "EAccountFlags_BannedFromWebAPI",
-	67108864:   "EAccountFlags_ClansOnlyFromFriends",
+	67108864:   "EAccountFlags_PartnerMember",
 	134217728:  "EAccountFlags_GlobalModerator",
 	268435456:  "EAccountFlags_ParentalSettings",
 	536870912:  "EAccountFlags_ThirdPartySupport",
@@ -5597,7 +5597,12 @@ const (
 	EOSType_MacOS111       EOSType = -79
 	EOSType_MacOS1017      EOSType = -78
 	EOSType_MacOS12        EOSType = -77
-	EOSType_MacOS13        EOSType = -76
+	EOSType_MacOS1018      EOSType = -76
+	EOSType_MacOS13        EOSType = -75
+	EOSType_MacOS1019      EOSType = -74
+	EOSType_MacOS14        EOSType = -73
+	EOSType_MacOS1020      EOSType = -72
+	EOSType_MacOS15        EOSType = -71
 	EOSType_MacOSMax       EOSType = -1
 	EOSType_LinuxUnknown   EOSType = -203
 	EOSType_Linux22        EOSType = -202
@@ -5708,7 +5713,12 @@ var EOSType_name = map[EOSType]string{
 	-79:  "EOSType_MacOS111",
 	-78:  "EOSType_MacOS1017",
 	-77:  "EOSType_MacOS12",
-	-76:  "EOSType_MacOS13",
+	-76:  "EOSType_MacOS1018",
+	-75:  "EOSType_MacOS13",
+	-74:  "EOSType_MacOS1019",
+	-73:  "EOSType_MacOS14",
+	-72:  "EOSType_MacOS1020",
+	-71:  "EOSType_MacOS15",
 	-203: "EOSType_LinuxUnknown",
 	-202: "EOSType_Linux22",
 	-201: "EOSType_Linux24",
@@ -5857,7 +5867,7 @@ const (
 	EServerType_Steam2Emulator      EServerType = 79
 	EServerType_PublicTest          EServerType = 80
 	EServerType_SolrMgr             EServerType = 81
-	EServerType_BroadcastRelay      EServerType = 82
+	EServerType_BroadcastIngestor   EServerType = 82
 	EServerType_BroadcastDirectory  EServerType = 83
 	EServerType_VideoManager        EServerType = 84
 	EServerType_TradeOffer          EServerType = 85
@@ -6314,6 +6324,12 @@ const (
 	ECurrencyCode_QAR     ECurrencyCode = 39
 	ECurrencyCode_CRC     ECurrencyCode = 40
 	ECurrencyCode_UYU     ECurrencyCode = 41
+	ECurrencyCode_BGN     ECurrencyCode = 42
+	ECurrencyCode_HRK     ECurrencyCode = 43
+	ECurrencyCode_CZK     ECurrencyCode = 44
+	ECurrencyCode_DKK     ECurrencyCode = 45
+	ECurrencyCode_HUF     ECurrencyCode = 46
+	ECurrencyCode_RON     ECurrencyCode = 47
 )
 
 var ECurrencyCode_name = map[ECurrencyCode]string{
@@ -6358,6 +6374,12 @@ var ECurrencyCode_name = map[ECurrencyCode]string{
 	39: "ECurrencyCode_QAR",
 	40: "ECurrencyCode_CRC",
 	41: "ECurrencyCode_UYU",
+	42: "ECurrencyCode_BGN",
+	43: "ECurrencyCode_HRK",
+	44: "ECurrencyCode_CZK",
+	45: "ECurrencyCode_DKK",
+	46: "ECurrencyCode_HUF",
+	47: "ECurrencyCode_RON",
 }
 
 func (e ECurrencyCode) String() string {
@@ -6467,12 +6489,14 @@ const (
 	EPublishedFileVisibility_Public      EPublishedFileVisibility = 0
 	EPublishedFileVisibility_FriendsOnly EPublishedFileVisibility = 1
 	EPublishedFileVisibility_Private     EPublishedFileVisibility = 2
+	EPublishedFileVisibility_Unlisted    EPublishedFileVisibility = 3
 )
 
 var EPublishedFileVisibility_name = map[EPublishedFileVisibility]string{
 	0: "EPublishedFileVisibility_Public",
 	1: "EPublishedFileVisibility_FriendsOnly",
 	2: "EPublishedFileVisibility_Private",
+	3: "EPublishedFileVisibility_Unlisted",
 }
 
 func (e EPublishedFileVisibility) String() string {
@@ -7181,7 +7205,8 @@ const (
 	EUCMFilePrivacyState_Private     EUCMFilePrivacyState = 2
 	EUCMFilePrivacyState_FriendsOnly EUCMFilePrivacyState = 4
 	EUCMFilePrivacyState_Public      EUCMFilePrivacyState = 8
-	EUCMFilePrivacyState_All         EUCMFilePrivacyState = EUCMFilePrivacyState_Public | EUCMFilePrivacyState_FriendsOnly | EUCMFilePrivacyState_Private
+	EUCMFilePrivacyState_Unlisted    EUCMFilePrivacyState = 16
+	EUCMFilePrivacyState_All         EUCMFilePrivacyState = EUCMFilePrivacyState_Public | EUCMFilePrivacyState_FriendsOnly | EUCMFilePrivacyState_Private | EUCMFilePrivacyState_Unlisted
 )
 
 var EUCMFilePrivacyState_name = map[EUCMFilePrivacyState]string{
@@ -7189,7 +7214,8 @@ var EUCMFilePrivacyState_name = map[EUCMFilePrivacyState]string{
 	2:  "EUCMFilePrivacyState_Private",
 	4:  "EUCMFilePrivacyState_FriendsOnly",
 	8:  "EUCMFilePrivacyState_Public",
-	14: "EUCMFilePrivacyState_All",
+	16: "EUCMFilePrivacyState_Unlisted",
+	30: "EUCMFilePrivacyState_All",
 }
 
 func (e EUCMFilePrivacyState) String() string {
@@ -7377,6 +7403,11 @@ const (
 	EDisplayStatus_AvailToBorrow    EDisplayStatus = 29
 	EDisplayStatus_AvailGuestPass   EDisplayStatus = 30
 	EDisplayStatus_Purchase         EDisplayStatus = 31
+	EDisplayStatus_Unavailable      EDisplayStatus = 32
+	EDisplayStatus_NotLaunchable    EDisplayStatus = 33
+	EDisplayStatus_CloudError       EDisplayStatus = 34
+	EDisplayStatus_CloudOutOfDate   EDisplayStatus = 35
+	EDisplayStatus_Terminating      EDisplayStatus = 36
 )
 
 var EDisplayStatus_name = map[EDisplayStatus]string{
@@ -7412,6 +7443,11 @@ var EDisplayStatus_name = map[EDisplayStatus]string{
 	29: "EDisplayStatus_AvailToBorrow",
 	30: "EDisplayStatus_AvailGuestPass",
 	31: "EDisplayStatus_Purchase",
+	32: "EDisplayStatus_Unavailable",
+	33: "EDisplayStatus_NotLaunchable",
+	34: "EDisplayStatus_CloudError",
+	35: "EDisplayStatus_CloudOutOfDate",
+	36: "EDisplayStatus_Terminating",
 }
 
 func (e EDisplayStatus) String() string {
@@ -7653,13 +7689,14 @@ func (e EChatRoomServerMsg) String() string {
 type EChatRoomGroupRank int32
 
 const (
-	EChatRoomGroupRank_Default   EChatRoomGroupRank = 0
-	EChatRoomGroupRank_Viewer    EChatRoomGroupRank = 10
-	EChatRoomGroupRank_Guest     EChatRoomGroupRank = 15
-	EChatRoomGroupRank_Member    EChatRoomGroupRank = 20
-	EChatRoomGroupRank_Moderator EChatRoomGroupRank = 30
-	EChatRoomGroupRank_Officer   EChatRoomGroupRank = 40
-	EChatRoomGroupRank_Owner     EChatRoomGroupRank = 50
+	EChatRoomGroupRank_Default     EChatRoomGroupRank = 0
+	EChatRoomGroupRank_Viewer      EChatRoomGroupRank = 10
+	EChatRoomGroupRank_Guest       EChatRoomGroupRank = 15
+	EChatRoomGroupRank_Member      EChatRoomGroupRank = 20
+	EChatRoomGroupRank_Moderator   EChatRoomGroupRank = 30
+	EChatRoomGroupRank_Officer     EChatRoomGroupRank = 40
+	EChatRoomGroupRank_Owner       EChatRoomGroupRank = 50
+	EChatRoomGroupRank_TestInvalid EChatRoomGroupRank = 99
 )
 
 var EChatRoomGroupRank_name = map[EChatRoomGroupRank]string{
@@ -7670,6 +7707,7 @@ var EChatRoomGroupRank_name = map[EChatRoomGroupRank]string{
 	30: "EChatRoomGroupRank_Moderator",
 	40: "EChatRoomGroupRank_Officer",
 	50: "EChatRoomGroupRank_Owner",
+	99: "EChatRoomGroupRank_TestInvalid",
 }
 
 func (e EChatRoomGroupRank) String() string {
@@ -7778,15 +7816,17 @@ func (e EChatRoomGroupAction) String() string {
 type EChatRoomJoinState int32
 
 const (
-	EChatRoomJoinState_Default EChatRoomJoinState = 0
-	EChatRoomJoinState_None    EChatRoomJoinState = 1
-	EChatRoomJoinState_Joined  EChatRoomJoinState = 2
+	EChatRoomJoinState_Default     EChatRoomJoinState = 0
+	EChatRoomJoinState_None        EChatRoomJoinState = 1
+	EChatRoomJoinState_Joined      EChatRoomJoinState = 2
+	EChatRoomJoinState_TestInvalid EChatRoomJoinState = 99
 )
 
 var EChatRoomJoinState_name = map[EChatRoomJoinState]string{
-	0: "EChatRoomJoinState_Default",
-	1: "EChatRoomJoinState_None",
-	2: "EChatRoomJoinState_Joined",
+	0:  "EChatRoomJoinState_Default",
+	1:  "EChatRoomJoinState_None",
+	2:  "EChatRoomJoinState_Joined",
+	99: "EChatRoomJoinState_TestInvalid",
 }
 
 func (e EChatRoomJoinState) String() string {
@@ -8174,6 +8214,7 @@ const (
 	ELauncherType_Headless     ELauncherType = 6
 	ELauncherType_SteamChina   ELauncherType = 7
 	ELauncherType_SingleApp    ELauncherType = 8
+	ELauncherType_GameServer   ELauncherType = 9
 )
 
 var ELauncherType_name = map[ELauncherType]string{
@@ -8186,6 +8227,7 @@ var ELauncherType_name = map[ELauncherType]string{
 	6: "ELauncherType_Headless",
 	7: "ELauncherType_SteamChina",
 	8: "ELauncherType_SingleApp",
+	9: "ELauncherType_GameServer",
 }
 
 func (e ELauncherType) String() string {

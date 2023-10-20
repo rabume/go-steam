@@ -8,7 +8,7 @@ package unified
 
 import (
 	
-	"github.com/rabume/go-steam/protocol/protobuf"
+	
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -140,7 +140,7 @@ type CCredentials_GetSteamGuardDetails_Request struct {
 	Webcookie              *string                                 `protobuf:"bytes,2,opt,name=webcookie" json:"webcookie,omitempty"`
 	TimestampMinimumWanted *uint32                                 `protobuf:"fixed32,3,opt,name=timestamp_minimum_wanted,json=timestampMinimumWanted" json:"timestamp_minimum_wanted,omitempty"`
 	DeprecatedIpaddress    *int32                                  `protobuf:"varint,4,opt,name=deprecated_ipaddress,json=deprecatedIpaddress" json:"deprecated_ipaddress,omitempty"`
-	IpAddress              *protobuf.CMsgIPAddress `protobuf:"bytes,5,opt,name=ip_address,json=ipAddress" json:"ip_address,omitempty"`
+	IpAddress              *CMsgIPAddress `protobuf:"bytes,5,opt,name=ip_address,json=ipAddress" json:"ip_address,omitempty"`
 }
 
 func (x *CCredentials_GetSteamGuardDetails_Request) Reset() {
@@ -196,7 +196,7 @@ func (x *CCredentials_GetSteamGuardDetails_Request) GetDeprecatedIpaddress() int
 	return 0
 }
 
-func (x *CCredentials_GetSteamGuardDetails_Request) GetIpAddress() *protobuf.CMsgIPAddress {
+func (x *CCredentials_GetSteamGuardDetails_Request) GetIpAddress() *CMsgIPAddress {
 	if x != nil {
 		return x.IpAddress
 	}
@@ -1173,7 +1173,7 @@ var file_steammessages_credentials_steamclient_proto_goTypes = []interface{}{
 	(*CCredentials_GetAccountAuthSecret_Request)(nil),              // 10: CCredentials_GetAccountAuthSecret_Request
 	(*CCredentials_GetAccountAuthSecret_Response)(nil),             // 11: CCredentials_GetAccountAuthSecret_Response
 	(*CCredentials_GetSteamGuardDetails_Response_SessionData)(nil), // 12: CCredentials_GetSteamGuardDetails_Response.SessionData
-	(*protobuf.CMsgIPAddress)(nil),                 // 13: CMsgIPAddress
+	(*CMsgIPAddress)(nil),                 // 13: CMsgIPAddress
 }
 var file_steammessages_credentials_steamclient_proto_depIdxs = []int32{
 	13, // 0: CCredentials_GetSteamGuardDetails_Request.ip_address:type_name -> CMsgIPAddress
