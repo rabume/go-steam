@@ -9,7 +9,7 @@ package unified
 import (
 	
 	
-	
+	"github.com/rabume/go-steam/protocol/protobuf"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -1220,7 +1220,7 @@ type PublishedFileDetails struct {
 	Revision                   *EPublishedFileRevision                          `protobuf:"varint,68,opt,name=revision,enum=EPublishedFileRevision,def=0" json:"revision,omitempty"`
 	AvailableRevisions         []EPublishedFileRevision                         `protobuf:"varint,69,rep,name=available_revisions,json=availableRevisions,enum=EPublishedFileRevision" json:"available_revisions,omitempty"`
 	Reactions                  []*PublishedFileDetails_Reaction                 `protobuf:"bytes,70,rep,name=reactions" json:"reactions,omitempty"`
-	BanTextCheckResult         *EBanContentCheckResult `protobuf:"varint,71,opt,name=ban_text_check_result,json=banTextCheckResult,enum=EBanContentCheckResult,def=0" json:"ban_text_check_result,omitempty"`
+	BanTextCheckResult         *protobuf.EBanContentCheckResult `protobuf:"varint,71,opt,name=ban_text_check_result,json=banTextCheckResult,enum=EBanContentCheckResult,def=0" json:"ban_text_check_result,omitempty"`
 	SearchScore                *float32                                         `protobuf:"fixed32,73,opt,name=search_score,json=searchScore" json:"search_score,omitempty"`
 }
 
@@ -1228,7 +1228,7 @@ type PublishedFileDetails struct {
 const (
 	Default_PublishedFileDetails_Language           = int32(0)
 	Default_PublishedFileDetails_Revision           = EPublishedFileRevision_k_EPublishedFileRevision_Default
-	Default_PublishedFileDetails_BanTextCheckResult = EBanContentCheckResult(0) // EBanContentCheckResult_k_EBanContentCheckResult_NotScanned
+	Default_PublishedFileDetails_BanTextCheckResult = protobuf.EBanContentCheckResult(0) // EBanContentCheckResult_k_EBanContentCheckResult_NotScanned
 )
 
 func (x *PublishedFileDetails) Reset() {
@@ -1746,7 +1746,7 @@ func (x *PublishedFileDetails) GetReactions() []*PublishedFileDetails_Reaction {
 	return nil
 }
 
-func (x *PublishedFileDetails) GetBanTextCheckResult() EBanContentCheckResult {
+func (x *PublishedFileDetails) GetBanTextCheckResult() protobuf.EBanContentCheckResult {
 	if x != nil && x.BanTextCheckResult != nil {
 		return *x.BanTextCheckResult
 	}
@@ -9040,7 +9040,7 @@ var file_steammessages_publishedfile_steamclient_proto_goTypes = []interface{}{
 	(*CPublishedFile_GetContentDescriptors_Response_ContentDescriptor)(nil),                 // 91: CPublishedFile_GetContentDescriptors_Response.ContentDescriptor
 	(*CPublishedFile_FileSubscribed_Notification_RevisionData)(nil),                         // 92: CPublishedFile_FileSubscribed_Notification.RevisionData
 	(EContentDescriptorID)(0),                                       // 93: EContentDescriptorID
-	(EBanContentCheckResult)(0),                                    // 94: EBanContentCheckResult
+	(protobuf.EBanContentCheckResult)(0),                                    // 94: EBanContentCheckResult
 	(*NoResponse)(nil),                         // 95: NoResponse
 }
 var file_steammessages_publishedfile_steamclient_proto_depIdxs = []int32{
