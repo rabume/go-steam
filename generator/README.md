@@ -13,7 +13,7 @@ We generate Go code from SteamKit protocol descriptors, namely `steamlang` files
    libprotoc 24.3
    ```
 
-3. Install `protoc-gen-go`: `go get google.golang.org/protobuf/cmd/protoc-gen-go`
+3. Install `protoc-gen-go`: `go install google.golang.org/protobuf/cmd/protoc-gen-go@latest`
 
    ```
    ✗ protoc-gen-go --version
