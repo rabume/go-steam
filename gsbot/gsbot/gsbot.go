@@ -72,7 +72,10 @@ func main() {
 		case error:
 			fmt.Printf("Error: %v", e)
 		case *steam.LoggedOnEvent:
-			client.Social.SetPersonaState(steamlang.EPersonaState_Online)
+			client.Social.SetPersonaState(steamlang.EPersonaState_Offline)
+
+			// const CSAppID = 730
+			// client.GC.SetGamesPlayed(CSAppID)
 		}
 	}
 }
